@@ -1,0 +1,3 @@
+[submodule "third-party/copperspice"]
+	path = third-party/copperspice
+	url = https://github.com/copperspice/copperspice.git
