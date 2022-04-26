@@ -7,7 +7,11 @@ add_executable(EmbeddedDeviceConfigurator
 
 target_link_libraries(EmbeddedDeviceConfigurator PRIVATE
         CopperSpice::CsGui
-        CopperSpice::CsCore)
+        CopperSpice::CsCore
+        gtest_main
+        gtest
+        gmock
+        fmt::fmt)
 
 if(MSVC)
     target_link_options(EmbeddedDeviceConfigurator PRIVATE

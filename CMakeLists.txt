@@ -12,9 +12,9 @@ set(CMAKE_INSTALL_PREFIX "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 
 enable_testing()
 
-#find_package(GTest)
-#find_package(GMock)
-#find_package(fmt)
+add_subdirectory(third-party/googletest)
+add_subdirectory(third-party/fmt)
+
 find_package(CopperSpice)
 
 add_subdirectory(interface)
