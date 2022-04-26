@@ -3,10 +3,12 @@
 
 #include <iostream>
 
+#ifdef MSVC
 int __stdcall WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nShowCmd*/)
+#else
+int main(int __argc, char **__argv)
+#endif
 {
-    std::cout << __argv[0] << std::endl;
-
     QApplication app(__argc, __argv);
 
     auto *mainWindow = new QWidget();
