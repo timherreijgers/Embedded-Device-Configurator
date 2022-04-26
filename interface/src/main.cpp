@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#ifdef MSVC
+#ifdef _MSC_VER
 int __stdcall WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nShowCmd*/)
 #else
 int main(int __argc, char **__argv)
