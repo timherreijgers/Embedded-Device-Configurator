@@ -1,4 +1,7 @@
-#include <QtCore>
+/*
+ * Copyright (c) 2022 Tim Herreijgers
+ */
+
 #include <QtGui>
 
 #include <iostream>
@@ -13,15 +16,6 @@ int main(int __argc, char **__argv)
 
     auto *mainWindow = new QWidget();
     mainWindow->setMinimumSize(700, 350);
-
-    QPushButton *pb = new QPushButton();
-    pb->setText("Close");
-
-    QHBoxLayout *layout = new QHBoxLayout(mainWindow);
-    layout->addWidget(pb);
-
-    QObject::connect(pb, &QPushButton::clicked,
-                     mainWindow, &QWidget::close);
 
     mainWindow->show();
 
