@@ -1,7 +1,7 @@
 project(protocol_tests)
 
 add_executable(${PROJECT_NAME}
-        test.cpp)
+        protocol.test.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
