@@ -16,5 +16,5 @@ public:
     void addDataType(DataType type);
     std::vector<DataEntry> convertToDataEntries(uint8_t *buffer, uint8_t size);
 private:
-    std::vector<DataEntry> m_entries;
+    std::vector<DataType> m_dataTypes;
 };

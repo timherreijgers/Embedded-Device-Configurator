@@ -76,3 +76,18 @@ TEST(ProtocolTest, DataConversionWithTwoDifferentAsInputReturnsCorrectDataType)
     data.dataUint16 = 4592;
     ASSERT_EQ(protocol.convertToDataEntries(reinterpret_cast<uint8_t *>(&data), 1)[1].type(), DataType::UINT16);
 }
+
+TEST(ProtocolTest, DataConversionWithTwoDifferentAsInputReturnsCorrectData)
+{
+    Protocol protocol;
+    protocol.addDataType(DataType::UINT8);
+    protocol.addDataType(DataType::UINT16);
+
+
+    Data data = {};
+    data.dataUint8 = 10;
+    data.dataUint16 = 4592;
+
+    auto dataEntries = protocol.convertToDataEntries(reinterpret_cast<uint8_t *>(&data), 3);
+    ASSERT_EQ(dataEntries[1].as<uint16_t>(), data.dataUint16);
+}

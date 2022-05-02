@@ -1,5 +1,12 @@
 #include "protocol/data_entry.h"
 
-DataType DataEntry::type() {
-    return DataType::UINT8;
+DataEntry::DataEntry(DataType type, void *data): m_type(type), m_data(data)
+{
+
+}
+
+
+DataType DataEntry::type()
+{
+    return m_type;
 }

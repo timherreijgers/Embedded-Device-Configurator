@@ -9,11 +9,17 @@
 class DataEntry
 {
 public:
+    DataEntry(DataType type, void *data);
+
     DataType type();
 
     template<class T>
     T as()
     {
-        return 10;
+        return *((T *) m_data);
     }
+
+private:
+    DataType m_type;
+    void *m_data;
 };
