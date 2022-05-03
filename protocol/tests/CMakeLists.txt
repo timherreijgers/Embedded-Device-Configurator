@@ -1,7 +1,7 @@
 project(protocol_tests)
 
 add_executable(${PROJECT_NAME}
-        protocol.test.cpp
+        protocol_unconfigured.test.cpp
         protocol_configured.test.cpp)
 
 target_link_libraries(${PROJECT_NAME}
