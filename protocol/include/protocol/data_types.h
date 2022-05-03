@@ -9,3 +9,5 @@ enum class DataType
     UINT8,
     UINT16
 };
+
+int calculateDataTypeOffset(DataType type);

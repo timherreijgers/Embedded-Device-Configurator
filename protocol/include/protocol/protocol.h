@@ -17,4 +17,6 @@ public:
     std::vector<DataEntry> convertToDataEntries(uint8_t *buffer, uint8_t size);
 private:
     std::vector<DataType> m_dataTypes;
+
+    int getTotalRequiredSize();
 };

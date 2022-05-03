@@ -21,6 +21,16 @@ TEST(ProtocolTest, DataConversionWithInputReturnsNoData)
     ASSERT_EQ(protocol.convertToDataEntries(&buffer, 1).size(), 0);
 }
 
+TEST(Protocoltest, DataConversionWithincorrectSizeReturnNoData)
+{
+    Protocol protocol;
+    protocol.addDataType(DataType::UINT8);
+
+    Data data;
+    data.dataUint8 = 10;
+    ASSERT_EQ(protocol.convertToDataEntries(reinterpret_cast<uint8_t *>(&data), 0).size(), 0);
+}
+
 TEST(ProtocolTest, DataConversionWithSingleInputAsInputReturnsData)
 {
     Protocol protocol;
@@ -62,7 +72,7 @@ TEST(ProtocolTest, DataConversionWithTwoDifferentInputAsInputReturnsData)
     Data data;
     data.dataUint8 = 10;
     data.dataUint16 = 4592;
-    ASSERT_EQ(protocol.convertToDataEntries(reinterpret_cast<uint8_t *>(&data), 1).size(), 2);
+    ASSERT_EQ(protocol.convertToDataEntries(reinterpret_cast<uint8_t *>(&data), 3).size(), 2);
 }
 
 TEST(ProtocolTest, DataConversionWithTwoDifferentAsInputReturnsCorrectDataType)
@@ -74,7 +84,7 @@ TEST(ProtocolTest, DataConversionWithTwoDifferentAsInputReturnsCorrectDataType)
     Data data;
     data.dataUint8 = 10;
     data.dataUint16 = 4592;
-    ASSERT_EQ(protocol.convertToDataEntries(reinterpret_cast<uint8_t *>(&data), 1)[1].type(), DataType::UINT16);
+    ASSERT_EQ(protocol.convertToDataEntries(reinterpret_cast<uint8_t *>(&data), 3)[1].type(), DataType::UINT16);
 }
 
 TEST(ProtocolTest, DataConversionWithTwoDifferentAsInputReturnsCorrectData)
@@ -82,7 +92,6 @@ TEST(ProtocolTest, DataConversionWithTwoDifferentAsInputReturnsCorrectData)
     Protocol protocol;
     protocol.addDataType(DataType::UINT8);
     protocol.addDataType(DataType::UINT16);
-
 
     Data data = {};
     data.dataUint8 = 10;
