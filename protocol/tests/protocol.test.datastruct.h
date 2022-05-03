@@ -4,13 +4,19 @@
 
 #pragma once
 
-#include <inttypes.h>
+#include <cinttypes>
 
-#pragma pack(1)
-struct Data
+#ifdef __GNUC__
+#define PACK( __Declaration__ ) __Declaration__ __attribute__((__packed__))
+#endif
+
+#ifdef _MSC_VER
+#define PACK( __Declaration__ ) __pragma( pack(push, 1) ) __Declaration__ __pragma( pack(pop))
+#endif
+
+PACK(struct Data
 {
     uint8_t dataUint8;
     uint16_t dataUint16;
     char stringBuffer32[32];
-};
-#pragma pack(0)
+});
