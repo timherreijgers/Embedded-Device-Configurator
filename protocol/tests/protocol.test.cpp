@@ -7,16 +7,20 @@
 
 #include <gtest/gtest.h>
 
-TEST(ProtocolTest, DataConversionNoInputReturnsNoData)
+class ProtocolTest : public ::testing::Test
 {
-    Protocol protocol;
-    ASSERT_EQ(protocol.convertToDataEntries(nullptr, 0).size(), 0);
+protected:
+    Protocol _protocol;
+    uint8_t _buffer = 10;
+};
+
+TEST_F(ProtocolTest, DataConversionNoInputReturnsNoData)
+{
+    ASSERT_EQ(_protocol.convertToDataEntries(nullptr, 0).size(), 0);
 }
 
-TEST(ProtocolTest, DataConversionWithInputReturnsNoData)
+TEST_F(ProtocolTest, DataConversionWithInputReturnsNoData)
 {
-    Protocol protocol;
 
-    uint8_t buffer = 10;
-    ASSERT_EQ(protocol.convertToDataEntries(&buffer, 1).size(), 0);
+    ASSERT_EQ(_protocol.convertToDataEntries(&_buffer, 1).size(), 0);
 }
