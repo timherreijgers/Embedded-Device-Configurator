@@ -9,8 +9,9 @@ void Protocol::addDataType(DataType type) {
 }
 
 std::vector<DataEntry> Protocol::convertToDataEntries(uint8_t *buffer, uint8_t size) {
-    std::vector<DataEntry> data;
     const auto requiredSize = getTotalRequiredSize();
+
+    std::vector<DataEntry> data;
     auto offset = 0;
 
     if(requiredSize != size)
@@ -19,7 +20,7 @@ std::vector<DataEntry> Protocol::convertToDataEntries(uint8_t *buffer, uint8_t s
     for(const auto & type : m_dataTypes)
     {
         data.emplace_back(type, buffer + offset);
-        offset += 1;
+        offset += calculateDataTypeOffset(type);
     }
 
     return data;

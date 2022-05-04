@@ -7,7 +7,8 @@
 enum class DataType
 {
     UINT8,
-    UINT16
+    UINT16,
+    UINT32
 };
 
 int calculateDataTypeOffset(DataType type);

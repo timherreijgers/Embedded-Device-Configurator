@@ -18,5 +18,5 @@ PACK(struct Data
 {
     uint8_t dataUint8;
     uint16_t dataUint16;
-    char stringBuffer32[32];
+    uint32_t dataUint32;
 });

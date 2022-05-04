@@ -2,7 +2,7 @@ project(protocol_tests)
 
 add_executable(${PROJECT_NAME}
         protocol_unconfigured.test.cpp
-        protocol_configured.test.cpp)
+        protocol_configured_raw_to_parsed.test.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
