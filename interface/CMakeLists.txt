@@ -1,9 +1,19 @@
 project(interface)
 
+COPPERSPICE_RESOURCES(
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/mainwindow.ui
+)
+
 set(CMAKE_INSTALL_RPATH "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 
 add_executable(EmbeddedDeviceConfigurator
-        src/main.cpp)
+        src/main.cpp
+        src/mainwindow.cpp
+        src/mainwindow.ui)
+
+target_include_directories(EmbeddedDeviceConfigurator PRIVATE
+        ${CMAKE_CURRENT_BINARY_DIR}
+        )
 
 target_link_libraries(EmbeddedDeviceConfigurator PRIVATE
         CopperSpice::CsGui
