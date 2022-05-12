@@ -9,7 +9,7 @@ set(CMAKE_INSTALL_RPATH "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
 add_executable(EmbeddedDeviceConfigurator
         src/main.cpp
         src/mainwindow.cpp
-        src/mainwindow.ui)
+        src/mainwindow.ui src/protocol_table_item_model.cpp)
 
 target_include_directories(EmbeddedDeviceConfigurator PRIVATE
         ${CMAKE_CURRENT_BINARY_DIR}
