@@ -22,6 +22,7 @@ jobs:
       
     - name: Install copperspice
       run: 
+        mkdir third-party/copperspice &&
         tar -xvjf --directory third-party/copperspice copperspice-1.7.4-ubuntu20.04-x64.tar.bz2 &&
         ls third-party
 
