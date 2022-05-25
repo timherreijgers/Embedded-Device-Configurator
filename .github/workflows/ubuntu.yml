@@ -16,7 +16,7 @@ jobs:
       
     - name: Install copperspice
       run: 
-        wget -O thirdparty copperspice.tar.bz2 https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-ubuntu20.04-x64.tar.bz2
+        wget -O thirdparty/copperspice.tar.bz2 https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-ubuntu20.04-x64.tar.bz2
         mkdir thirdparty/copperspice
         tar -xvjf --directory thirdparty/copperspice thirdparty/copperspice.tar.bz2
         ls thirdparty
