@@ -23,7 +23,8 @@ jobs:
     - name: Install copperspice
       run: 
         mkdir third-party/copperspice &&
-        tar -xvjf copperspice-1.7.4-ubuntu20.04-x64.tar.bz2 --directory third-party/copperspice
+        tar -xvjf copperspice-1.7.4-ubuntu20.04-x64.tar.bz2 --directory third-party/copperspice &&
+        ls third-party/copperspice/lib/cmake/CopperSpice
         
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
