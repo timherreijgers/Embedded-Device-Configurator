@@ -4,12 +4,13 @@ COPPERSPICE_RESOURCES(
         ${CMAKE_CURRENT_SOURCE_DIR}/src/mainwindow.ui
 )
 
-set(CMAKE_INSTALL_RPATH "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+set(CMAKE_INSTALL_RPATH "@executable_path")
 
 add_executable(EmbeddedDeviceConfigurator
         src/main.cpp
         src/mainwindow.cpp
-        src/mainwindow.ui src/protocol_table_item_model.cpp)
+        src/mainwindow.ui
+        src/protocol_table_item_model.cpp)
 
 target_include_directories(EmbeddedDeviceConfigurator PRIVATE
         ${CMAKE_CURRENT_BINARY_DIR}
