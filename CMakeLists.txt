@@ -16,6 +16,8 @@ enable_testing()
 add_subdirectory(third-party/googletest)
 add_subdirectory(third-party/fmt)
 
+# TODO: Try to fix this using ExternalProject_Add https://cmake.org/cmake/help/latest/module/ExternalProject.html
 find_package(CopperSpice)
 
 add_subdirectory(interface)
+add_subdirectory(protocol)

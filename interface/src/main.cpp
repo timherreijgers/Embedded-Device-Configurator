@@ -1,4 +1,7 @@
-#include <QtCore>
+/*
+ * Copyright (c) 2022 Tim Herreijgers
+ */
+
 #include <QtGui>
 
 #include <iostream>
