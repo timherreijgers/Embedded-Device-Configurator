@@ -17,9 +17,6 @@ target_include_directories(EmbeddedDeviceConfigurator PRIVATE
 target_link_libraries(EmbeddedDeviceConfigurator PRIVATE
         CopperSpice::CsGui
         CopperSpice::CsCore
-        gtest_main
-        gtest
-        gmock
         fmt::fmt)
 
 if(MSVC)
