@@ -14,8 +14,9 @@ jobs:
       with:
         submodules: true
       
-    - name: Setup OpenGL
-      uses: openrndr/setup-opengl@v1.1
+    - name: Install dependencies
+      run:
+        sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev
       
     - name: Download copperspice
       uses: wei/wget@v1
