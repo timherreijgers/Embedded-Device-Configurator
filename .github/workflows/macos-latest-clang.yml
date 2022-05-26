@@ -16,7 +16,7 @@ jobs:
       
     - name: Install dependencies
       run:
-        brew install mesa-common-dev libglu1-mesa-dev freeglut3-dev && 
+        brew install mesa-glu mesalib-glw freeglut && 
         sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
       
     - name: Download copperspice
