@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run:
         sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev && 
-        ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
+        sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
       
     - name: Download copperspice
       uses: wei/wget@v1
