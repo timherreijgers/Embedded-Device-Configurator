@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        compiler-c: [gcc, clang]
-        compiler-c++: [g++, clang++]
+        compiler_c: [gcc, clang]
+        compiler_cpp: [g++, clang++]
 
     steps:
     - uses: actions/checkout@v3
@@ -36,8 +36,8 @@ jobs:
         
     - name: Configure CMake
       env: 
-        CC: ${{ matrix.compiler-c }}
-        CXX: ${{ matrix.compiler-c++ }}
+        CC: ${{ matrix.compiler_c }}
+        CXX: ${{ matrix.compiler_cpp }}
       run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/lib/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
