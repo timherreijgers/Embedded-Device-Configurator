@@ -16,7 +16,7 @@ jobs:
       
     - name: List files in folder
       run:
-        ls /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
+        ls /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/
 
     - name: Install dependencies
       run:
