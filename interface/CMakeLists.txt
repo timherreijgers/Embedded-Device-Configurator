@@ -4,6 +4,12 @@ COPPERSPICE_RESOURCES(
         ${CMAKE_CURRENT_SOURCE_DIR}/src/mainwindow.ui
 )
 
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set(CMAKE_INSTALL_RPATH "@executable_path")
+elseif(CMAKE_SYSTEM_NAME MATCHES "(Linux|OpenBSD|FreeBSD)")
+    set(CMAKE_INSTALL_RPATH "\$ORIGIN")
+endif()
+
 add_executable(EmbeddedDeviceConfigurator
         src/main.cpp
         src/mainwindow.cpp
