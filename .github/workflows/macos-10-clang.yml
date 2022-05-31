@@ -19,9 +19,8 @@ jobs:
         brew install mesa-glu mesalib-glw freeglut
       
     - name: Download copperspice
-      uses: wei/wget@v1
-      with:
-        args: https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-osx10.16-x64.tar.bz2
+      run: 
+        wget https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-osx10.16-x64.tar.bz2
 
     - name: Install copperspice
       run: 
