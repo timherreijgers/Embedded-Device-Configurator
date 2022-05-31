@@ -30,7 +30,7 @@ jobs:
     - name: Configure CMake
       env: 
         CC: clang
-      run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/lib/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/lib/cmake/copperspice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
