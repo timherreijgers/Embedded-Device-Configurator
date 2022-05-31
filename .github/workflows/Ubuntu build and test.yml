@@ -1,0 +1,46 @@
+name: Ubuntu build and test
+
+on: [ push ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+      
+    - name: Install dependencies
+      run:
+        sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev && 
+        sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
+      
+    - name: Download copperspice
+      uses: wei/wget@v1
+      with:
+        args: https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-ubuntu20.04-x64.tar.bz2
+
+    - name: Install copperspice
+      run: 
+        mkdir third-party/copperspice &&
+        tar -xjf copperspice-1.7.4-ubuntu20.04-x64.tar.bz2 --directory third-party/copperspice
+        
+    - name: Configure CMake
+      env: 
+        CC: ${{ matrix.compiler }}
+      run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/lib/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C ${{env.BUILD_TYPE}}
+      
