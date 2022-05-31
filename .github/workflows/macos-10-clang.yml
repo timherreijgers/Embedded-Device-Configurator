@@ -16,6 +16,7 @@ jobs:
       
     - name: Install dependencies
       run:
+        xcode-select --install &&
         brew install mesa-glu mesalib-glw freeglut
       
     - name: Download copperspice
