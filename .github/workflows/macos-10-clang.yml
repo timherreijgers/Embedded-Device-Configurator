@@ -16,7 +16,6 @@ jobs:
       
     - name: Install dependencies
       run:
-        xcode-select --install &&
         brew install mesa-glu mesalib-glw freeglut &&
         ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk
       
