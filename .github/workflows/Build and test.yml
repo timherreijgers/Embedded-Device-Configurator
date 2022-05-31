@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        compiler: [gcc]
+        compiler: [gcc, clang]
 
     steps:
     - uses: actions/checkout@v3
@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run:
         sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev && 
-        sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
+        sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so.0
       
     - name: Download copperspice
       uses: wei/wget@v1
