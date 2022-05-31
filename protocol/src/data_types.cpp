@@ -5,6 +5,7 @@
 #include "protocol/data_types.h"
 
 #include <array>
+#include <cinttypes>
 
 static constexpr std::array<int, 3> getOffsets()
 {
