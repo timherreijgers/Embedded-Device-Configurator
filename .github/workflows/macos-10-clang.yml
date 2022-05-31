@@ -7,7 +7,7 @@ env:
 
 jobs:
   build:
-    runs-on: macos-12
+    runs-on: macos-10.15
 
     steps:
     - uses: actions/checkout@v3
@@ -17,17 +17,16 @@ jobs:
     - name: Install dependencies
       run:
         brew install mesa-glu mesalib-glw freeglut
-        # sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
       
     - name: Download copperspice
       uses: wei/wget@v1
       with:
-        args: https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-ubuntu20.04-x64.tar.bz2
+        args: https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-osx10.16-x64.tar.bz2
 
     - name: Install copperspice
       run: 
         mkdir third-party/copperspice &&
-        tar -xjf copperspice-1.7.4-ubuntu20.04-x64.tar.bz2 --directory third-party/copperspice
+        tar -xjf copperspice-1.7.4-osx10.16-x64.tar.bz2 --directory third-party/copperspice
         
     - name: Configure CMake
       env: 
