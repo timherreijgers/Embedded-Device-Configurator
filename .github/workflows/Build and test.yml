@@ -91,9 +91,8 @@ jobs:
     steps:
       - name: Download copperspice
         run:
-          curl https://download.copperspice.com/copperspice/binary/cs-1.7/setup-CopperSpice-1.7.4-x64-MSVC-release.exe &&
-          dir
+          curl https://download.copperspice.com/copperspice/binary/cs-1.7/setup-CopperSpice-1.7.4-x64-MSVC-release.exe --output copperspice-installer.exe
           
       - name: Install copperspice
         run:
-          ./setup-CopperSpice-1.7.4-x64-MSVC-release.exe
+          ./copperspice-installer.exe
