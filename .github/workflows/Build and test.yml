@@ -101,10 +101,6 @@ jobs:
       - name: Download copperspice
         run:
           Invoke-WebRequest -Uri "https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip" -OutFile "CopperSpice.zip"
-                    
-      - name: List files
-        run: 
-          powershell -command "ls"
           
       - name: Install copperspice
         run:
