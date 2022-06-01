@@ -25,12 +25,6 @@ target_link_libraries(EmbeddedDeviceConfigurator PRIVATE
         CopperSpice::CsCore
         fmt::fmt)
 
-if(MSVC)
-    target_link_options(EmbeddedDeviceConfigurator PRIVATE
-            /SUBSYSTEM:WINDOWS
-            )
-endif()
-
 install(TARGETS EmbeddedDeviceConfigurator RUNTIME DESTINATION .)
 
 cs_copy_library(CsGui)
