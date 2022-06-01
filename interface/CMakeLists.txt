@@ -27,6 +27,6 @@ target_link_libraries(EmbeddedDeviceConfigurator PRIVATE
 
 install(TARGETS EmbeddedDeviceConfigurator RUNTIME DESTINATION .)
 
-#cs_copy_library(CsGui)
-#cs_copy_library(CsCore)
-#cs_copy_plugins(CsGui)
+cs_copy_library(CsGui)
+cs_copy_library(CsCore)
+cs_copy_plugins(CsGui)
