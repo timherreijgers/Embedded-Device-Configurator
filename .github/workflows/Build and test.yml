@@ -105,11 +105,8 @@ jobs:
         run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
-        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
         
-      - name: Install
-        run: cmake --build ${{github.workspace}}/build --target install
-
       - name: Execute GUI
         run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator.exe
 
