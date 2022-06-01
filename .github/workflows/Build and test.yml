@@ -93,11 +93,6 @@ jobs:
         with:
           submodules: true
     
-#       - uses: gamedev-thingy/Download-Extract@done
-#         with:
-#           url: https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip
-#           destination: ./third-party/copperspice
-    
       - name: Download copperspice
         run:
           Invoke-WebRequest -Uri "https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip" -OutFile "CopperSpice.zip"
@@ -111,6 +106,9 @@ jobs:
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+      - name: Execute GUI
+        run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator.exe
 
       - name: Test
         working-directory: ${{github.workspace}}/build
