@@ -93,22 +93,22 @@ jobs:
         with:
           submodules: true
     
-      - uses: gamedev-thingy/Download-Extract@done
-        with:
-          url: https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip
-          destination: ./third-party/copperspice
+#       - uses: gamedev-thingy/Download-Extract@done
+#         with:
+#           url: https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip
+#           destination: ./third-party/copperspice
     
-#       - name: Download copperspice
-#         run:
-#           powershell -command "wget https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip"
+      - name: Download copperspice
+        run:
+          Invoke-WebRequest -Uri "https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip" -OutFile "CopperSpice.zip"
+                    
+      - name: List files
+        run: 
+          powershell -command "ls"
           
-#       - name: List files
-#         run: 
-#           powershell -command "ls"
-          
-#       - name: Install copperspice
-#         run:
-#           7z x CopperSpice.zip -othird-party/copperspice
+      - name: Install copperspice
+        run:
+          7z x CopperSpice.zip -othird-party/copperspice
           
       - name: Configure CMake
         run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
