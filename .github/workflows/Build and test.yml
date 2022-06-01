@@ -98,9 +98,8 @@ jobs:
           curl https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip --output copperspice-binaries.zip
           
       - name: Install copperspice
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip --qq copperspice-binaries.zip -d third-party/copperspice
+        run:
+          7z x copperpice-binaries.zip -othird-party/copperspice
           
       - name: Configure CMake
         run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
