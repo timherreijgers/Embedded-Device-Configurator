@@ -97,6 +97,10 @@ jobs:
         run:
           powershell -command "wget https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip"
           
+      - name: List files
+        run: 
+          powershell -command "ls"
+          
       - name: Install copperspice
         run:
           7z x CopperSpice.zip -othird-party/copperspice
