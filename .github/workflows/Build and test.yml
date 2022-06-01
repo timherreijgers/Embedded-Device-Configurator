@@ -89,14 +89,26 @@ jobs:
     runs-on: windows-latest
     
     steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+    
       - name: Download copperspice
         run:
-          curl https://download.copperspice.com/copperspice/binary/cs-1.7/setup-CopperSpice-1.7.4-x64-MSVC-release.exe --output copperspice-installer.exe
+          curl https://drive.google.com/file/d/1KvyPpwoT0u8KG8LYfz_HgkOz56FLjmDg/view?usp=sharingg --output copperspice-binaries.tar
           
       - name: Install copperspice
         run:
-          ./copperspice-installer.exe
+          mkdir third-party/copperspice &&
+          tar -xjf copperspice-binaries.tar --directory third-party/copperspice
           
-      - name: Verify copperspice installation
-        run:
-          dir C:\
+      - name: Configure CMake
+        run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/CopperSpice.framework/Resources -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
+        
