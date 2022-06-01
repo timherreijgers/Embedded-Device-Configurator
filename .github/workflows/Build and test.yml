@@ -47,8 +47,8 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
     
-    - name: Execute GUI
-      run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
+#     - name: Execute GUI
+#       run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
       
     - name: Test
       working-directory: ${{github.workspace}}/build
@@ -84,8 +84,8 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
       
-    - name: Execute GUI
-      run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
+#     - name: Execute GUI
+#       run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
 
     - name: Test
       working-directory: ${{github.workspace}}/build
@@ -113,8 +113,8 @@ jobs:
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
         
-      - name: Execute GUI
-        run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator.exe
+#       - name: Execute GUI
+#         run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator.exe
 
       - name: Test
         working-directory: ${{github.workspace}}/build
