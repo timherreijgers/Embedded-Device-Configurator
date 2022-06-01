@@ -95,15 +95,15 @@ jobs:
     
       - name: Download copperspice
         run:
-          curl https://drive.google.com/file/d/1KvyPpwoT0u8KG8LYfz_HgkOz56FLjmDg/view?usp=sharingg --output copperspice-binaries.tar
+          curl https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip --output copperspice-binaries.zip
           
       - name: Install copperspice
         run:
           mkdir third-party/copperspice &&
-          tar -xf copperspice-binaries.tar --directory third-party/copperspice
+          tar -xf copperspice-binaries.zip --directory third-party/copperspice
           
       - name: Configure CMake
-        run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/CopperSpice.framework/Resources -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
