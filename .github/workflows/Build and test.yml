@@ -106,6 +106,9 @@ jobs:
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+        
+      - name: Install
+        run: cmake --build ${{github.workspace}}/build --target install
 
       - name: Execute GUI
         run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator.exe
