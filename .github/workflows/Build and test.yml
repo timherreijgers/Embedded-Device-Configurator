@@ -85,7 +85,7 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
     
-  windows-latest:
+  Windows-latest:
     runs-on: windows-latest
     
     steps:
