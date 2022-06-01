@@ -99,7 +99,7 @@ jobs:
           
       - name: Install copperspice
         run:
-          7z x copperpice-binaries.zip -othird-party/copperspice
+          7z x copperspice-binaries.zip -othird-party/copperspice
           
       - name: Configure CMake
         run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
