@@ -95,7 +95,7 @@ jobs:
     
       - name: Download copperspice
         run:
-          powershell -command "Invoke-WebRequest https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip"
+          powershell -command "wget https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip"
           
       - name: Install copperspice
         run:
