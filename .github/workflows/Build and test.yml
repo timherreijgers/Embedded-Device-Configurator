@@ -100,9 +100,14 @@ jobs:
       - name: Install copperspice
         run:
           mkdir third-party/copperspice &&
-          tar -xf copperspice-binaries.zip --directory third-party/copperspice &&
-          dir third-party/copperspice && 
-          echo ---------------- &&
+          tar -xf copperspice-binaries.zip --directory third-party/copperspice
+          
+      - name: Dir1
+        run:
+          dir third-party/copperspice
+          
+      - name: Dir2
+        run:
           dir third-party/copperspice/cmake/CopperSpice
           
       - name: Configure CMake
