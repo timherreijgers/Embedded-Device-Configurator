@@ -96,3 +96,7 @@ jobs:
       - name: Install copperspice
         run:
           ./copperspice-installer.exe
+          
+      - name: Verify copperspice installation
+        run:
+          dir C:\
