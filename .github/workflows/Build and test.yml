@@ -100,7 +100,7 @@ jobs:
       - name: Install copperspice
         run:
           mkdir third-party/copperspice &&
-          tar -xjf copperspice-binaries.tar --directory third-party/copperspice
+          tar -xf copperspice-binaries.tar --directory third-party/copperspice
           
       - name: Configure CMake
         run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/CopperSpice.framework/Resources -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
