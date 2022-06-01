@@ -45,8 +45,11 @@ jobs:
       run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/lib/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
+    
+    - name: Execute GUI
+      run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
+      
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
@@ -79,7 +82,10 @@ jobs:
       run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/CopperSpice.framework/Resources -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
+      
+    - name: Execute GUI
+      run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
 
     - name: Test
       working-directory: ${{github.workspace}}/build
