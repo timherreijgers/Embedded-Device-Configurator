@@ -84,3 +84,15 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
+    
+  windows-latest:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Download copperspice
+        steps:
+          curl https://download.copperspice.com/copperspice/binary/cs-1.7/setup-CopperSpice-1.7.4-x64-MSVC-release.exe
+          
+      - name: Install copperspice
+        steps:
+          ./setup-CopperSpice-1.7.4-x64-MSVC-release.exe
