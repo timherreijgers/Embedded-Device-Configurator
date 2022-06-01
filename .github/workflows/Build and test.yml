@@ -103,7 +103,7 @@ jobs:
           tar -xf copperspice-binaries.zip --directory third-party/copperspice
           
       - name: Configure CMake
-        run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
