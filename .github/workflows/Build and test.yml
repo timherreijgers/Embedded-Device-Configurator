@@ -1,0 +1,122 @@
+name: Build and test
+
+on: [ push ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  Ubuntu-latest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler_c: [gcc, clang]
+        include:
+          - compiler_c: gcc
+            compiler_cpp: g++
+          - compiler_c: clang
+            compiler_cpp: clang++
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+      
+    - name: Install dependencies
+      run:
+        sudo apt install mesa-common-dev libglu1-mesa-dev freeglut3-dev && 
+        sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so &&
+        sudo ln -sf /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libOpenGL.so.0
+      
+    - name: Download copperspice
+      uses: wei/wget@v1
+      with:
+        args: https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-ubuntu20.04-x64.tar.bz2
+
+    - name: Install copperspice
+      run: 
+        mkdir third-party/copperspice &&
+        tar -xjf copperspice-1.7.4-ubuntu20.04-x64.tar.bz2 --directory third-party/copperspice
+        
+    - name: Configure CMake
+      env: 
+        CC: ${{ matrix.compiler_c }}
+        CXX: ${{ matrix.compiler_cpp }}
+      run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/lib/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
+    
+#     - name: Execute GUI
+#       run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
+      
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C ${{env.BUILD_TYPE}}
+    
+  Macos-10:
+    runs-on: macos-10.15
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+      
+    - name: Install dependencies
+      run:
+        brew install mesa-glu mesalib-glw freeglut &&
+        ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk
+      
+    - name: Download copperspice
+      run: 
+        wget https://download.copperspice.com/copperspice/binary/cs-1.7/copperspice-1.7.4-osx10.16-x64.tar.bz2
+
+    - name: Install copperspice
+      run: 
+        mkdir third-party/copperspice &&
+        tar -xjf copperspice-1.7.4-osx10.16-x64.tar.bz2 --directory third-party/copperspice
+        
+    - name: Configure CMake
+      env: 
+        CC: clang
+      run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/CopperSpice.framework/Resources -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
+      
+#     - name: Execute GUI
+#       run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C ${{env.BUILD_TYPE}}
+    
+  Windows-latest:
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+    
+      - name: Download copperspice
+        run:
+          Invoke-WebRequest -Uri "https://github.com/timherreijgers/Copperspice-windows-binaries/raw/master/CopperSpice.zip" -OutFile "CopperSpice.zip"
+          
+      - name: Install copperspice
+        run:
+          7z x CopperSpice.zip -othird-party/copperspice
+          
+      - name: Configure CMake
+        run: cmake -DCMAKE_PREFIX_PATH=${{github.workspace}}/third-party/copperspice/cmake/CopperSpice -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
+        
+#       - name: Execute GUI
+#         run: ${{github.workspace}}/build/deploy/EmbeddedDeviceConfigurator.exe
+
+      - name: Test
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C ${{env.BUILD_TYPE}}
+        

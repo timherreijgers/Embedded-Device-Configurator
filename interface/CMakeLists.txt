@@ -4,7 +4,11 @@ COPPERSPICE_RESOURCES(
         ${CMAKE_CURRENT_SOURCE_DIR}/src/mainwindow.ui
 )
 
-set(CMAKE_INSTALL_RPATH "@executable_path")
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set(CMAKE_INSTALL_RPATH "@executable_path")
+elseif(CMAKE_SYSTEM_NAME MATCHES "(Linux|OpenBSD|FreeBSD)")
+    set(CMAKE_INSTALL_RPATH "\$ORIGIN")
+endif()
 
 add_executable(EmbeddedDeviceConfigurator
         src/main.cpp
@@ -19,16 +23,7 @@ target_include_directories(EmbeddedDeviceConfigurator PRIVATE
 target_link_libraries(EmbeddedDeviceConfigurator PRIVATE
         CopperSpice::CsGui
         CopperSpice::CsCore
-        gtest_main
-        gtest
-        gmock
         fmt::fmt)
-
-if(MSVC)
-    target_link_options(EmbeddedDeviceConfigurator PRIVATE
-            /SUBSYSTEM:WINDOWS
-            )
-endif()
 
 install(TARGETS EmbeddedDeviceConfigurator RUNTIME DESTINATION .)
 

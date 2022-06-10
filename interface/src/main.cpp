@@ -2,19 +2,15 @@
  * Copyright (c) 2022 Tim Herreijgers
  */
 
-#include <QtGui>
+#include <QtGui/QApplication>
 
 #include <iostream>
 
 #include "mainwindow.h"
 
-#ifdef _MSC_VER
-int __stdcall WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nShowCmd*/)
-#else
-int main(int __argc, char **__argv)
-#endif
+int main(int argc, char **argv)
 {
-    QApplication app(__argc, __argv);
+    QApplication app(argc, argv);
 
     auto mainWindow = new MainWindow();
 
