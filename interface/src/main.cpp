@@ -2,7 +2,7 @@
  * Copyright (c) 2022 Tim Herreijgers
  */
 
-#include <QtGui>
+#include <QtGui/QApplication>
 
 #include <iostream>
 
