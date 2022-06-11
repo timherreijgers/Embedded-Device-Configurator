@@ -21,3 +21,4 @@ find_package(CopperSpice REQUIRED)
 
 add_subdirectory(interface)
 add_subdirectory(protocol)
+add_subdirectory(serial)
